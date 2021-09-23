@@ -1,1 +1,20 @@
-{"data": "data"}
+[
+    {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "published": "April 10, 1925",
+        "genre": "Tragedy"
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "author": "J. D. Salinger",
+        "published": "16 July, 1951",
+        "genre": "Coming-of-age"
+    },
+    {
+        "title": "Of Mice and Men",
+        "author": "John Steinbeck",
+        "published": "March 13, 1937",
+        "genre": "Tragedy"
+    }
+]
