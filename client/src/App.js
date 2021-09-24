@@ -13,16 +13,17 @@ function App() {
   const fetchBook = async (id) => {
     const response = await fetch(`http://localhost:5000/books/${id}`);
     const book = await response.json();
-    setBookList(book);
+    setBookList([book]);
   };
 
   useEffect(() => {
     fetchBooks();
-  }, [bookList]);
+  }, []);
 
-  const onClick = async (event) => {
-    const id = event.target.key;
-    await fetchBook(id);
+  const onClick = (event) => {
+    const id = event.target.value;
+    console.log(id);
+    fetchBook(id);
   };
 
   return (
@@ -38,7 +39,9 @@ function App() {
             <p>{book.author}</p>
             <p>{book.genre}</p>
             <p>{book.published}</p>
-            <button onClick={onClick}>More Info</button>
+            <button value={book._id} onClick={onClick}>
+              More Info
+            </button>
           </li>
         ))}
       </ul>
