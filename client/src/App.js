@@ -7,13 +7,23 @@ function App() {
   const fetchBooks = async () => {
     const response = await fetch("http://localhost:5000/books");
     const books = await response.json();
-    console.log(books);
     setBookList(books);
+  };
+
+  const fetchBook = async (id) => {
+    const response = await fetch(`http://localhost:5000/books/${id}`);
+    const book = await response.json();
+    setBookList(book);
   };
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [bookList]);
+
+  const onClick = async (event) => {
+    const id = event.target.key;
+    await fetchBook(id);
+  };
 
   return (
     <div className="App">
@@ -22,12 +32,13 @@ function App() {
         A website for women in their mid 40's who have disposable income
       </p>
       <ul className="bookList">
-        {bookList.map((book, index) => (
-          <li className="bookItem" key={index}>
+        {bookList.map((book) => (
+          <li className="bookItem" key={book._id}>
             <h2>{book.title}</h2>
             <p>{book.author}</p>
             <p>{book.genre}</p>
             <p>{book.published}</p>
+            <button onClick={onClick}>More Info</button>
           </li>
         ))}
       </ul>
