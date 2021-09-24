@@ -5,14 +5,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Hardcoded data
 const products = require("./data/data.json");
 
-// Make GET route for "/" that gets all books/gifts
-// Hard code data in data.json
-
+// Maybe this isn't needed?
 app.get("/", (req, res) => {
   return res.send("Some data").status(200);
 });
+
+app.get("/products/:id", (req, res) => {
+  return (products.filter(item => item.id === req.params.id));
+})
 
 app.get("/products", (req, res) => {
   return res.send(products).status(200);
