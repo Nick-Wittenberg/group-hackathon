@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../App.css";
 
 export const Book = ({ onClick, bookList }) => {
@@ -9,7 +9,6 @@ export const Book = ({ onClick, bookList }) => {
 
   const fetchBook = async () => {
     const response = await fetch(`http://localhost:5000/books/${id}`);
-
     const book = await response.json();
     setBook(book);
     setIsLoading(false);
@@ -17,9 +16,11 @@ export const Book = ({ onClick, bookList }) => {
 
   useEffect(() => {
     fetchBook();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
   return (
     <div>

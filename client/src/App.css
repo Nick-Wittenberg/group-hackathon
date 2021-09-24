@@ -40,3 +40,8 @@ body {
   border-radius: 1rem;
   padding: 3rem;
 }
+
+.loading {
+  font-weight: bold;
+  font-size: 2rem;
+}

@@ -4,15 +4,22 @@ import "../App.css";
 
 export const BookList = ({ onClick }) => {
   const [bookList, setBookList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const fetchBooks = async () => {
     const response = await fetch("http://localhost:5000/books");
     const books = await response.json();
     setBookList(books);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchBooks();
   }, []);
+
+  if (isLoading) {
+    return <p className="loading">Loading...</p>;
+  }
   return (
     <div>
       <ul className="bookList">
