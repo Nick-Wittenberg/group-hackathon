@@ -17,11 +17,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Books and Stuff and a Comb</h1>
-      <p>A website for women in their mid 40's who have disposable income</p>
+      <h1 className="header">Books and Stuff and a Comb</h1>
+      <p className="description">
+        A website for women in their mid 40's who have disposable income
+      </p>
       <ul className="bookList">
         {bookList.map((book, index) => (
-          <li className="bookItem" key={book.index}>
+          <li className="bookItem" key={index}>
             <h2>{book.title}</h2>
             <p>{book.author}</p>
             <p>{book.genre}</p>
