@@ -1,8 +1,12 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BookList } from "./components/BookList";
+import { Book } from "./components/Book.js";
 
 function App() {
   const [bookList, setBookList] = useState([]);
+  const [book, setBook] = useState([]);
 
   const fetchBooks = async () => {
     const response = await fetch("http://localhost:5000/books");
@@ -13,6 +17,7 @@ function App() {
   const fetchBook = async (id) => {
     const response = await fetch(`http://localhost:5000/books/${id}`);
     const book = await response.json();
+    setBook([book]);
     setBookList([book]);
   };
 
@@ -27,30 +32,25 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1 className="header">Books and Stuff and a Comb</h1>
-      <p className="description">
-        A website for women in their mid 40's who have disposable income
-      </p>
-      <ul className="bookList">
-        {bookList.map((book) => (
-          <li className="bookItem" key={book._id}>
-            <h2>{book.title}</h2>
-            <p>{book.author}</p>
-            <p>{book.genre}</p>
-            <p>{book.published}</p>
-            <button value={book._id} onClick={onClick}>
-              More Info
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    <Router>
+      <div className="App">
+        <h1 className="header">Books and Stuff and a Comb</h1>
+        <p className="description">
+          A website for women in their mid 40's who have disposable income
+        </p>
+        <Link to="/books">Book List</Link>
 
-  // Fetch all gifts/books
-  // Display list of gifts/books
-  // "/" endpoint to fetch
+        <Switch>
+          <Route path="/books">
+            <BookList bookList={bookList} onClick={onClick} />
+          </Route>
+          <Route path="/books/:id">
+            <Book />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
