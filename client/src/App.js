@@ -5,7 +5,7 @@ function App() {
   const [bookList, setBookList] = useState([]);
 
   const fetchBooks = async () => {
-    const response = await fetch("http://localhost:5000/products");
+    const response = await fetch("http://localhost:5000/books");
     const books = await response.json();
     console.log(books);
     setBookList(books);

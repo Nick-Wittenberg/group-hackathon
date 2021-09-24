@@ -12,8 +12,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/products/:id", (req, res) => {
-  return (products.filter(item => item.id === req.params.id));
-})
+  return products.filter((item) => item.id === req.params.id);
+});
 
 app.get("/products", (req, res) => {
   return res.send(products).status(200);
