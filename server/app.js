@@ -7,12 +7,13 @@ const booksModel = require("./model/booksModel");
 app.use(cors());
 app.use(express.json());
 
-// Make GET route for "/" that gets all books/gifts
-// Hard code data in data.json
-
 app.get("/", (req, res) => {
   return res.send("Some data").status(200);
 });
+
+app.get("/products/:id", (req, res) => {
+  return (products.filter(item => item.id === req.params.id));
+})
 
 app.get("/products", (req, res) => {
   return res.send(products).status(200);
