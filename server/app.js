@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const products = require("./data/data.json");
 const booksModel = require("./model/booksModel");
 
 app.use(cors());
