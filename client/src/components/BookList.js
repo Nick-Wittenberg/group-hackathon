@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-export const BookList = ({ onClick, bookList }) => {
+export const BookList = ({ onClick }) => {
+  const [bookList, setBookList] = useState([]);
+  const fetchBooks = async () => {
+    const response = await fetch("http://localhost:5000/books");
+    const books = await response.json();
+    setBookList(books);
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
   return (
     <div>
       <ul className="bookList">
@@ -13,10 +23,7 @@ export const BookList = ({ onClick, bookList }) => {
             <p>{book.genre}</p>
             <p>{book.published}</p>
 
-            <button value={book._id} onClick={onClick}>
-              <Link to={`/books/${book._id}`}>More Info</Link>
-              More Info
-            </button>
+            <Link to={`/books/${book._id}`}>More Info</Link>
           </li>
         ))}
       </ul>
