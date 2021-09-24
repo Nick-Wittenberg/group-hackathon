@@ -7,6 +7,7 @@ html {
 }
 body {
   margin: 0;
+  background-color: tomato;
 }
 
 .App {
@@ -14,8 +15,6 @@ body {
   padding: 0;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: tomato;
-  height: 100%;
 }
 .header {
   margin: 0;
